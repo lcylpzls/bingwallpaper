@@ -1,0 +1,23 @@
+[package]
+name = "bingwallpaper"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = "z"        # 优化二进制文件大小
+lto = "fat"            # 启用链接时优化
+codegen-units = 1      # 合并代码生成单元
+panic = "abort"        # 禁用栈展开
+strip = true           # 移除不必要的符号表
+
+[dependencies]
+winapi = { version = "0.3.9", features = ["winuser", "wingdi"] }
+reqwest = { version = "0.12.12", features = ["blocking", "json"] }
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.137"
+cron = "0.15.0"
+tokio = { version = "1.43.0", features = ["full"] }
+chrono = "0.4.39"
+chrono-tz = "0.10.1"
+anyhow = "1.0.95"
+winreg = "0.55.0"
